@@ -8,8 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open --config webpack.config.js",
-    "electron": "npm run build && electron ."
+    "start": "webpack-dev-server --config webpack.config.js",
+    "electron": "electron ."
   },
   "author": "",
   "license": "ISC",

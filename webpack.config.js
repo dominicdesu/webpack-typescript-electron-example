@@ -13,6 +13,10 @@ module.exports = {
         contentBase: './dist',
         hot: true
     },
+    node: {
+        __dirname: false,
+        __filename: false
+    },
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
@@ -24,6 +28,7 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
+    target: 'electron-renderer',
     module: {
         rules: [
             {
