@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const { spawn } = require('child_process')
 
 module.exports = {
     entry: {
@@ -11,7 +12,17 @@ module.exports = {
     //devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
-        hot: true
+        hot: true,
+        before() {
+            // Start Electron client automatically when dev server starts
+            spawn(
+                'electron',
+                ['.'],
+                { shell: true, env: process.env, stdio: 'inherit' }
+            )
+                .on('close', code => process.exit(0))
+                .on('error', spawnError => console.error(spawnError))
+        }
     },
     node: {
         __dirname: false,
